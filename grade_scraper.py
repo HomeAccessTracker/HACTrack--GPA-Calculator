@@ -27,13 +27,14 @@ for grade in soup.find_all(attrs={'id': 'average'}):
         all_grades.append(round(float(grade.text)))
     except:
         all_grades.append(0)
-
+#creating a dictionary to match the course names to their respective grades for ease in calculations
 for course in range(len(all_courses)):
     courses[all_courses[course]] = all_grades[course]
     
 weighted_total = 0
 total_minus = 0
 print(courses)
+#manipulates grade values in order to calculate the GPA
 for course in courses:
 
     if course in weighted_classes or 'AP' in course:
@@ -46,6 +47,7 @@ for course in courses:
     
 print(all_courses)
 print(all_grades)
-
+#GPA is calculated depending on the types of classes you take then subtracted by the total minus
+#the total raw "GPA" is then divided by the number of classes you take to finally get a weighted GPA.
 GPA = ((5*(len(courses)-weighted_total) + 6*weighted_total)-total_minus)/len(courses)
 print(round(GPA, 3)) 
