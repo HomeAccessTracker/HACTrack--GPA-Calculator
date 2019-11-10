@@ -1,23 +1,28 @@
-from connection import connect
+from connection import connect #connection class returns the HTML for the grades page
+
 import bs4 as bs
 import urllib
 
 
 user_name = ''
 pass_word = ''
-page = connect(user_name, pass_word)
-soup = bs.BeautifulSoup(page.content, 'html5lib')
+page = connect(user_name, pass_word) 
+soup = bs.BeautifulSoup(page.content, 'html5lib') #creating a new beautiful soup object which we can scrape for data
 
+#extra weighted classes that do not have keyword 'AP' in it
 weighted_classes = ['Digital Forensics', 'Computer Science III']
 all_courses = []
 all_grades = []
 courses = {}
 
+#scrapes all the coursenames from the HAC HTML from the site
 for course in soup.find_all(attrs={'id': 'courseName'}):
     if course.text not in all_courses:
         all_courses.append(course.text)
 
+#scrapes all the grades from the HAC HTML from the site
 for grade in soup.find_all(attrs={'id': 'average'}):
+    #it is originally string so it must be converted to a float
     try:
         all_grades.append(round(float(grade.text)))
     except:
