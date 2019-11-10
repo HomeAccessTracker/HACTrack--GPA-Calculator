@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HACTRACK</title>
+</head>
+<body>
+	<h3><u>Courses</u></h3>
+	{% for course in courses %}
+		<p><font size = "3">{{course}} - <b>{{courses[course]}}</b></font></p>
+	{% endfor %}
+
+	<h1> </h3>
+	<h3><u>Gpa</u> - {{GPA}}</h3>
+	<p></p>
+</body>
+</html>
