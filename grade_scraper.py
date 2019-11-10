@@ -1,9 +1,12 @@
+from connection import connect
 import bs4 as bs
 import urllib
 
-file = open('googgrades.html') #input HAC static file right here
-soup = bs.BeautifulSoup(file, 'lxml')
-file.close()
+
+user_name = ''
+pass_word = ''
+page = connect(user_name, pass_word)
+soup = bs.BeautifulSoup(page.content, 'html5lib')
 
 weighted_classes = ['Digital Forensics', 'Computer Science III']
 all_courses = []
